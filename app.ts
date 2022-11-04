@@ -11,8 +11,19 @@ console.log(PORT);
 
 // Express
 const start = async () => {
+  const adminOptions = {
+    rootPath: "/admin",
+    dashboard: {},
+    branding: {
+      logo: "https://cifraengenharia.com.br/wp-content/uploads/2018/08/logo-site.png",
+      favicon:
+        "https://cifraengenharia.com.br/wp-content/uploads/2021/05/cropped-icon2-32x32.png",
+      companyName: "Cifra Engenharia",
+    },
+  };
   const app = express();
-  const admin = new AdminJS({});
+  //instaciar o adminJS
+  const admin = new AdminJS(adminOptions);
   //criando a rota /admin como parametro nós injetamos o AdminJS
   const adminRouter = AdminJSExpress.buildRouter(admin);
   //executando nosso express (param1: opções para receber rota, retorna um obj que seja executado: nossa Rota)
