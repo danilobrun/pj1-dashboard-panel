@@ -2,6 +2,7 @@
 import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import express from "express";
+import sequelize from "./db";
 require("dotenv").config();
 
 // Test conection
@@ -26,11 +27,21 @@ const start = async () => {
       companyName: "Cifra Engenharia",
     },
   };
+
   const app = express();
+
+  //sequelize
+  sequelize
+    .sync()
+    .then((result) => console.log(result))
+    .catch((err) => console.log(err));
+
   //instaciar o adminJS
   const admin = new AdminJS(adminOptions);
+
   //criando a rota /admin como parametro nós injetamos o AdminJS
   const adminRouter = AdminJSExpress.buildRouter(admin);
+
   //executando nosso express (param1: opções para receber rota, retorna um obj que seja executado: nossa Rota)
   //ou seja queremos que quando ele entre em nosso adminRouter que será executado? nosso adminRouter é uma função
   //como parâmetro ela recebe admin ou seja quem é adminRouter é o nosso cara AdminJS
