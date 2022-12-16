@@ -13,7 +13,12 @@ console.log(PORT);
 const start = async () => {
   const adminOptions = {
     rootPath: "/admin",
-    dashboard: {},
+    dashboard: {
+      handle: () => {
+        console.log("Entrou aqui");
+      },
+      component: AdminJS.bundle("./components/dashboard"),
+    },
     branding: {
       logo: "https://cifraengenharia.com.br/wp-content/uploads/2018/08/logo-site.png",
       favicon:
