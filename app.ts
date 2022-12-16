@@ -3,12 +3,19 @@ import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import express from "express";
 import sequelize from "./db";
+import * as AdminJSSequelize from "@adminjs/sequelize";
 require("dotenv").config();
 
 // Test conection
 const PORT = process.env.PORT_HOST;
 
 console.log(PORT);
+
+// Adpaters: server adapters to persist data in the database this is the adminJS model itself
+AdminJS.registerAdapter({
+  Resource: AdminJSSequelize.Resource,
+  Database: AdminJSSequelize.Database,
+});
 
 // Express
 const start = async () => {
