@@ -14,7 +14,7 @@ const start = async () => {
   const adminOptions = {
     rootPath: "/admin",
     dashboard: {
-      handle: () => {
+      handle: async () => {
         console.log("Entrou aqui");
       },
       component: AdminJS.bundle("./components/dashboard"),
