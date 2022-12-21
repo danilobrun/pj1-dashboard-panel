@@ -6,6 +6,8 @@ import sequelize from "./db";
 import * as AdminJSSequelize from "@adminjs/sequelize";
 require("dotenv").config();
 
+import { Category } from "./model/category.entity";
+
 // Test conection
 const PORT = process.env.PORT_HOST;
 
@@ -20,6 +22,7 @@ AdminJS.registerAdapter({
 // Express
 const start = async () => {
   const adminOptions = {
+    resources: [Category],
     rootPath: "/admin",
     dashboard: {
       handle: async () => {
