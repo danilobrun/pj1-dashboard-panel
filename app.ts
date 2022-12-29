@@ -20,34 +20,34 @@ AdminJS.registerAdapter({
   Database: AdminJSSequelize.Database,
 });
 
+// Função para gerar um resource genérico de configuração
+const generateResource = (model: object) => {
+  return {
+    resource: model,
+    options: {
+      properties: {
+        createdAt: {
+          isVisible: {
+            list: true, edit: false, create: false, show: true
+          }
+        },
+        updatedAt: {
+          isVisible: 
+          {
+            list: true, edit: false, create: false, show: true
+          }
+        }
+      }
+    }
+  }
+}
+
 // Express
 const start = async () => {
   const adminOptions = {
     resources: [
-      Product,
-      {
-        resource: Category,
-        options: 
-        {
-          properties: 
-          {
-            createdAt: 
-            {
-              isVisible: 
-              {
-                list: true, edit: false, create: false, show: true
-              }
-            },
-            updatedAt: 
-            {
-              isVisible: 
-              {
-                list: true, edit: false, create: false, show: true
-              }
-            }
-          }
-        }
-      }
+      generateResource(Product),
+      generateResource(Category), 
     ],
     rootPath: "/admin",
     dashboard: {
